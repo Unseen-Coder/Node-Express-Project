@@ -1,0 +1,4 @@
+check.js based on JTW(jsonwebtoken)
+
+
+server.js based on custom token

@@ -1,0 +1,49 @@
+{
+  "users": {
+    "dsd": {
+      "username": "dsd",
+      "email": "d@gmail.com",
+      "password": "sdsdsd",
+      "fullName": "edw",
+      "token": "SPKF95aOUmeChn8Qsz2xEXubSnrgu2Zj"
+    },
+    "ARya": {
+      "username": "ARya",
+      "email": "abc@gmail.com",
+      "password": "145236",
+      "fullName": "arya",
+      "token": "KEapa9NiT5XZAkTm8qQX6jB98oLDVK1M"
+    },
+    "sdsadk": {
+      "username": "sdsadk",
+      "email": "bbsa@k.comwd",
+      "password": "dewx",
+      "fullName": "wxwx",
+      "token": "quBFCiIoZMQVknm6By668tzkveeHnznU"
+    },
+    "Angesh": {
+      "username": "Angesh",
+      "email": "chauhanangesh36@gmail.com",
+      "password": "123456",
+      "fullName": "Angesh Chauhan"
+    },
+    "Angesh007": {
+      "username": "Angesh007",
+      "email": "chauhanangesh@gmail.com",
+      "password": "123456",
+      "fullName": "Angesh Chauhan"
+    },
+    "bsdhbsa": {
+      "username": "bsdhbsa",
+      "email": "ssajn@gmail.com",
+      "password": "dksnjkd",
+      "fullName": "dhkwbkhd"
+    },
+    "dwdnd": {
+      "username": "dwdnd",
+      "email": "ndkwhduh@gwn.comff",
+      "password": "fwrfc",
+      "fullName": "dfdsfw"
+    }
+  }
+}

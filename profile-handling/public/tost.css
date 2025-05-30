@@ -1,0 +1,83 @@
+
+.toast-base {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: #374151;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, top 0.4s ease;
+  z-index: 1000;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.toast-base.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast-success .toast-icon {
+  background-color: #10b981;
+}
+.toast-success .toast-icon i {
+  color: white;
+}
+
+.toast-error .toast-icon {
+  background-color: #ef4444;
+}
+.toast-error .toast-icon i {
+  color: white;
+}
+
+.toast-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+button {
+  display: block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+}
+
+.success-btn {
+  background: #10b981;
+}
+
+.success-btn:hover {
+  background: #059669;
+}
+
+.error-btn {
+  background: #ef4444;
+}
+
+.error-btn:hover {
+  background: #dc2626;
+}

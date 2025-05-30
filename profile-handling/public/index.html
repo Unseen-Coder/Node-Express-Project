@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="style.css">
+     <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+</head>
+<body>
+    <div class="container">
+        <!-- Login Form -->
+        <div id="login-form" class="form-container active">
+            <h2 class="form-title">Login</h2>
+            <form id="login-form-element">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="Enter your password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="toggle-form">
+                Don't have an account? <span id="show-signup">Sign up</span>
+            </div>
+        </div>
+
+        <!-- Signup Form -->
+        <div id="signup-form" class="form-container">
+            <h2 class="form-title">Create Account</h2>
+            <form id="signup-form-element">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" placeholder="Create a password">
+                </div>
+                <!-- <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" name="confirm_password" placeholder="Confirm your password">
+                </div> -->
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="toggle-form">
+                Already have an account? <span id="show-login">Login</span>
+            </div>
+        </div>
+
+        <!-- OTP Verification -->
+        <div id="otp-form" class="form-container">
+            <h2 class="form-title">OTP Verification</h2>
+            <p class="otp-message">We've sent a verification code to your email</p>
+            <form id="otp-form-element">
+                <div class="otp-input">
+                    <input type="text" maxlength="1" class="otp-digit" name="otp1">
+                    <input type="text" maxlength="1" class="otp-digit" name="otp2">
+                    <input type="text" maxlength="1" class="otp-digit" name="otp3">
+                    <input type="text" maxlength="1" class="otp-digit" name="otp4">
+                </div>
+                <button type="submit">Verify OTP</button>
+            </form>
+            <div class="toggle-form">
+                Didn't receive code? <span id="resend-otp">Resend</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

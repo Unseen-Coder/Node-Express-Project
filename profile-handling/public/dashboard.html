@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skyward Bank</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tost.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="logo-details">
+      <div class="logo_name">Profile <br> Management</div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+
+    <ul class="nav-list">
+      <!-- Profile Section at Top -->
+      <li class="profile">
+        <div class="profile-details">
+          <img src="user.png" alt="profile image" id="sidepic" />
+          <div class="name" id="uname">Anonymous</div>
+        </div>
+        <i class="bx bx-log-out" id="log_out"></i>
+      </li>
+
+      <!-- Navigation Items -->
+      <li>
+        <a href="#" data-target="create-profile">
+          <i class="bx bx-user"></i>
+          <span class="links_name">View Profile</span>
+        </a>
+        <span class="tooltip">View Profile</span>
+      </li>
+      <li>
+        <a href="#" class="nav-link" data-target="show-profile" id="test-profile-link">
+          <i class="bx bx-id-card"></i>
+          <span class="links_name">Show Profile</span>
+        </a>
+        <span class="tooltip">Show Profile</span>
+      </li>
+      <li>
+        <a href="#" data-target="update-profile">
+          <i class="bx bx-edit"></i>
+          <span class="links_name">Update Profile</span>
+        </a>
+        <span class="tooltip">Update Profile</span>
+      </li>
+      <li>
+        <a href="#" data-target="delete-profile">
+          <i class="bx bx-user-x"></i>
+          <span class="links_name">Delete Profile</span>
+        </a>
+        <span class="tooltip">Delete Profile</span>
+      </li>
+    </ul>
+  </div>
+
+  <section id="create-profile" class="home-section">
+    <div class="content">
+      <div class="section-header">
+        <h2 style="margin-bottom: 20px; border-bottom: 2px solid black;">All Profiles</h2>
+      </div>
+      <div class="loader" id="loader"></div> 
+      <div class="profile-card-row-container">
+         
+      
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="show-profile" class="home-section" style="display: none">
+    <div class="content" id="profile-show">
+      <div class="section-header">
+        <h2>Profile Information</h2>
+      </div>
+
+      <div class="profile-container">
+        <div class="profile-card">
+          <div class="profile-image-section">
+            <div class="pic">
+              <img src="user.png" id="profile-pic" alt="Profile Picture" />
+            </div>
+          </div>
+
+          <form action="/submit" method="POST" id="show-form" class="profile-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="mobnumber">Mobile Number</label>
+                <input type="tel" id="mobnumber" name="mobnumber" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="bio">Bio</label>
+                <input type="tel" id="bio" name="bio" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="status">Account Status</label>
+                <input type="text" id="status" name="status" placeholder="active/inactive/banned" readonly
+                  style="color: rgb(14, 229, 42);" />
+              </div>
+
+              <div class="form-group social-section">
+                <label>Social Links</label>
+                <div class="social-links">
+                  <a href="" target="_blank" class="social-link facebook">
+                    <i class="fa-brands fa-facebook"></i>
+                  </a>
+                  <a href="" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="" target="_blank" class="social-link linkedin">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href="" target="_blank" class="social-link twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="update-profile" class="home-section" style="display: none">
+    <div class="content">
+      <div class="section-header">
+        <h2>Update Profile</h2>
+      </div>
+
+      <div class="profile-container" id="update-profile-show">
+        <div class="profile-card">
+          <div class="profile-image-section">
+            <div class="update-pic">
+              <img src="user.png" id="update-profile-pic" alt="Profile Picture" />
+              <div class="image-overlay">
+                <i class="fa-solid fa-camera update-icon"></i>
+                <span>Change Photo</span>
+              </div>
+              <input type="file" id="update-choose" accept="image/*" />
+            </div>
+          </div>
+
+          <form id="update-show-form" class="profile-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="update-email">Email Address</label>
+                <input type="email" id="update-email" name="email" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="update-name">Full Name</label>
+                <input type="text" id="update-name" name="name" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="update-username">Username</label>
+                <input type="text" id="update-username" name="username" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="update-address">Address</label>
+                <input type="text" id="update-address" name="address" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="update-mobnumber">Mobile Number</label>
+                <input type="tel" id="update-mobnumber" name="mobnumber" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="update-bio">Bio</label>
+                <input type="text" id="update-bio" name="bio" readonly />
+              </div>
+
+              <div class="form-group">
+                <label for="update-status">Account Status</label>
+                <input type="text" id="update-status" name="status" placeholder="active/inactive/banned" readonly
+                  style="color: rgb(14, 229, 42);" />
+              </div>
+
+              <div class="form-group social-section full-width">
+                <label>Social Media Links</label>
+                <div class="social-inputs">
+                  <div class="social-input-group">
+                    <label for="update-facebook-input">Facebook</label>
+                    <div class="input-with-icon">
+                      <input type="url" id="update-facebook-input" name="facebook" readonly />
+                      <a href="" id="update-facebook-link" target="_blank" class="social-link facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="social-input-group">
+                    <label for="update-instagram-input">Instagram</label>
+                    <div class="input-with-icon">
+                      <input type="url" id="update-instagram-input" name="instagram" readonly />
+                      <a href="" id="update-instagram-link" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="social-input-group">
+                    <label for="update-linkedin-input">LinkedIn</label>
+                    <div class="input-with-icon">
+                      <input type="url" id="update-linkedin-input" name="linkedin" readonly />
+                      <a href="" id="update-linkedin-link" target="_blank" class="social-link linkedin">
+                        <i class="fab fa-linkedin"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="social-input-group">
+                    <label for="update-twitter-input">Twitter</label>
+                    <div class="input-with-icon">
+                      <input type="url" id="update-twitter-input" name="twitter" readonly />
+                      <a href="" id="update-twitter-link" target="_blank" class="social-link twitter">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button id="send" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                Save Changes
+              </button>
+              <button type="button" class="btn btn-outline">
+                <i class="fas fa-edit"></i>
+                Enable Editing
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="delete-profile" class="home-section" style="display: none">
+    <div class="content">
+      <div class="section-header">
+        <h2>Delete Profile</h2>
+      </div>
+
+      <div class="profile-container">
+        <div class="profile-card">
+          <div class="delete-warning">
+            <div class="warning-icon">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h3>Danger Zone</h3>
+            <p>This action cannot be undone. This will permanently delete the user profile and remove all associated
+              data from our servers.</p>
+
+            <div class="form-actions" id="btn">
+              <button type="button" class="btn btn-danger" id="delete">
+                <i class="fas fa-trash-alt"></i>
+                Delete Profile
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="dash.js"></script>
+</body>
+
+</html>

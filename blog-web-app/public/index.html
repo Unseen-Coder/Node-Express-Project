@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WriteFlow - Blog Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header id="nav">
+        <div id="logo">
+            <div class="logo-icon">
+                <div class="logo-circle"></div>
+                <div class="logo-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <span class="logo-text">WriteFlow</span>
+        </div>
+
+        <div id="input">
+            <input type="text" id="query" placeholder="Search blogs..." />
+            <button id="btn">Search</button>
+        </div>
+        <div id="menuIcon" class="menu-icon">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+
+    <div id="slideMenu" class="slide-menu">
+        <div class="slide-menu-header">
+            <h3>WriteFlow</h3>
+            <button id="closeMenu" class="close-btn">&times;</button>
+        </div>
+        <nav class="slide-menu-nav">
+            <ul>
+                <li>
+                    <a href="#" data-category="home">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-category="newBlog">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>New Blog</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-category="allBlogs">
+                        <i class="fa-solid fa-list"></i>
+                        <span>All Blogs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-category="profile">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="profile-section">
+            <div class="profile-info">
+                <div class="profile-pic">
+                    <img src="logos.svg" alt="Profile" id="profile-pic" />
+                </div>
+                <div class="profile-details">
+                    <h4 id="profile-name">John Doe</h4>
+                    <p id="profile-bio">Blogger</p>
+                </div>
+            </div>
+            <button id="logoutBtn" class="logout-btn">
+                <i class="fa-solid fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+    </div>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="main-content">
+
+        <div id="homePage" class="content-page active">
+            <div class="page-header">
+                <h1>Explore the Latest Stories</h1>
+            </div>
+            <div id="homeContent" class="content-area">
+
+                <div class="parent">
+                    <div class="div1">1</div>
+                    <div class="div2">2</div>
+                    <div class="div4">4</div>
+                    <div class="div5">5</div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div id="newBlogPage" class="content-page">
+            <div class="page-header">
+                <h1>Publish New Blog</h1>
+            </div>
+            <div class="content-area">
+                <div class="blog-form">
+                    <h3>Create New Blog Post</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="blogTitle">Blog Title</label>
+                            <input type="text" id="blogTitle" placeholder="Enter blog title..." />
+                        </div>
+                        <div class="form-group">
+                            <label for="blogContent">Content</label>
+                            <textarea id="blogContent" rows="10"
+                                placeholder="Write your blog content here...(892 charcter limit)"
+                                maxlength="892"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="blogImage">Category</label>
+                            <input type="file" id="blogImage" />
+                        </div>
+                        <div class="form-group">
+                            <label for="blogCategory">Category</label>
+                            <input type="text" id="blogCategory" placeholder="Enter blog Category..." />
+                        </div>
+                        <button type="submit" class="submit-btn">Publish Blog</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="allBlogsPage" class="content-page">
+            <div class="page-header">
+                <h1>All Published Blogs</h1>
+            </div>
+            <div id="allBlogsContent" class="content-area">
+                
+            </div>
+        </div>
+
+        <div id="profilePage" class="content-page">
+            <div id="profileContent" class="content-area">
+                <div class="update-pic">
+                    <img src="logos.svg" id="update-profile-pic" alt="Profile Picture" />
+                    <div class="image-overlay">
+                        <i class="fa-solid fa-camera update-icon"></i>
+                        <span>Change Photo</span>
+                    </div>
+                    <input type="file" id="update-choose" accept="image/*" />
+                </div>
+
+                <form id="update-show-form" class="profile-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="update-email">Email Address</label>
+                            <input type="email" id="update-email" name="email" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="update-name">Full Name</label>
+                            <input type="text" id="update-name" name="name" readonly />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="update-bio">Bio</label>
+                            <input type="text" id="update-bio" name="bio" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="send" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <button type="button" class="btn btn-outline">
+                            <i class="fas fa-edit"></i>
+                            Enable Editing
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="editBlogModal" class="edit-modal">
+        <div class="edit-modal-content">
+            <div class="edit-modal-header">
+                <h2 id="editModalTitle">Edit Blog</h2>
+                <button class="close-edit-btn" id="closeEditModal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="edit-modal-body">
+                <form>
+                    <div class="edit-form-group">
+                        <label for="blogId">Blog ID</label>
+                        <input type="text" id="blogId" placeholder="blogId" readonly />
+                    </div>
+                    <div class="edit-form-group">
+                        <label for="editBlogTitle">Blog Title</label>
+                        <input type="text" id="editBlogTitle" placeholder="Enter blog title..." />
+                    </div>
+                    <div class="edit-form-group">
+                        <label for="editBlogContent">Content</label>
+                        <textarea id="editBlogContent" rows="10"
+                            placeholder="Write your blog content here...(892 character limit)" maxlength="892"
+                            style="resize: none;"></textarea>
+                    </div>
+                    <div class="edit-form-group">
+                        <label for="editBlogImage">Image</label>
+                        <input type="file" id="editBlogImage" />
+                    </div>
+                    <div class="edit-form-group">
+                        <label for="editBlogCategory">Category</label>
+                        <input type="text" id="editBlogCategory" placeholder="Enter blog Category..." />
+                    </div>
+                    <button type="submit" class="update-blog-btn">Update Blog</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

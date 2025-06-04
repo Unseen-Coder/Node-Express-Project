@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login & Signup</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="login">Login</button>
+        <button class="tab-btn" data-tab="signup">Signup</button>
+      </div>
+
+      <div class="tab-content active" id="login">
+        <form id="login-form">
+          <div class="input-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="Enter your email" required />
+          </div>
+
+          <div class="input-group">
+            <label for="login-password">Password</label>
+            <div class="password-field">
+              <input type="password" id="login-password" placeholder="••••••••" required />
+              <span class="toggle-password material-symbols-outlined">visibility</span>
+            </div>
+          </div>
+
+          <div class="remember-forgot">
+            <a href="#" class="forgot">Forgot password?</a>
+          </div>
+
+          <button type="submit" style="margin-left: 110px;width: 200px;display: flex;justify-content: center;"
+            class="btn primary-btn">Sign in</button>
+        </form>
+      </div>
+
+      <div class="tab-content" id="signup">
+        <form id="signup-form">
+          <div class="input-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" placeholder="Enter your name" required />
+          </div>
+
+          <div class="input-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="Enter your email" required />
+          </div>
+
+          <div class="input-group">
+            <label for="signup-password">Password</label>
+            <div class="password-field">
+              <input type="password" id="signup-password" placeholder="••••••••" required />
+              <span class="toggle-password material-symbols-outlined">visibility</span>
+            </div>
+          </div>
+
+          <div class="terms">
+            <input type="checkbox" id="terms" required />
+            <label for="terms">I agree to the <a href="#">Terms of Service</a> and
+              <a href="#">Privacy Policy</a></label>
+          </div>
+
+          <button type="submit" style="margin-left: 90px;display: flex;justify-content: center;"
+            class="btn primary-btn">
+            Create account
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tabBtns = document.querySelectorAll(".tab-btn");
+      const tabContents = document.querySelectorAll(".tab-content");
+
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabBtns.forEach((b) => b.classList.remove("active"));
+          tabContents.forEach((c) => c.classList.remove("active"));
+
+          btn.classList.add("active");
+          const tabId = btn.getAttribute("data-tab");
+          document.getElementById(tabId).classList.add("active");
+        });
+      });
+
+      const togglePasswordBtns =
+        document.querySelectorAll(".toggle-password");
+
+      togglePasswordBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const passwordField = this.previousElementSibling;
+
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+            this.textContent = "visibility_off";
+          } else {
+            passwordField.type = "password";
+            this.textContent = "visibility";
+          }
+        });
+      });
+
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+
+      loginForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
+
+        try {
+          const res = await fetch("/api/users/signin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+            credentials: "include",
+          });
+
+          const data = await res.json();
+
+          if (data.success) {
+            successToast(data.message)
+            window.location.href = "index.html";
+          } else {
+            console.error("Login failed:", data.message || data.error);
+            errorToast(data.message)
+          }
+        } catch (err) {
+          console.error("Error during login:", err);
+          alert("Something went wrong. Please try again.");
+        }
+      });
+
+      signupForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("signup-name").value;
+        const email = document.getElementById("signup-email").value;
+        const password = document.getElementById("signup-password").value;
+
+        try {
+          const res = await fetch("/api/users/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password }),
+          });
+
+          const data = await res.json();
+
+          if (data.success) {
+            successToast(data.message)
+          } else {
+            errorToast(data.message)
+            console.error("Signup failed:", data.message || data.error);
+          }
+        } catch (err) {
+          console.error("Error during signup:", err);
+        }
+      });
+    });
+
+    //Toast
+
+    function removeExistingToast(id) {
+      const existing = document.getElementById(id);
+      if (existing) existing.remove();
+    }
+
+    function successToast(message) {
+      removeExistingToast("success-toast");
+
+      const toast = document.createElement("div");
+      toast.className = "toast-base toast-success show";
+      toast.id = "success-toast";
+
+      const icon = document.createElement("div");
+      icon.className = "toast-icon";
+      icon.innerHTML = '<i class="fas fa-check"></i>';
+
+      const msg = document.createElement("div");
+      msg.className = "toast-message";
+      msg.textContent = message;
+
+      toast.appendChild(icon);
+      toast.appendChild(msg);
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
+    }
+
+    function errorToast(message) {
+      removeExistingToast("error-toast");
+
+      const toast = document.createElement("div");
+      toast.className = "toast-base toast-error show";
+      toast.id = "error-toast";
+
+      const icon = document.createElement("div");
+      icon.className = "toast-icon";
+      icon.innerHTML = '<i class="fas fa-times"></i>';
+
+      const msg = document.createElement("div");
+      msg.className = "toast-message";
+      msg.textContent = message;
+
+      toast.appendChild(icon);
+      toast.appendChild(msg);
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
+    }
+  </script>
+</body>
+
+</html>

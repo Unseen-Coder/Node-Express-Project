@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Upload</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+
+    h2 {
+      margin-top: 40px;
+      font-size: 28px;
+      color: #00aaff;
+    }
+
+    .container {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    input[type="file"] {
+      background-color: #1f1f1f;
+      color: #fff;
+      border: 1px solid #333;
+      padding: 12px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+    }
+
+    button {
+      background-color: #00aaff;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0088cc;
+    }
+
+    video {
+      margin-top: 30px;
+      border: 2px solid #00aaff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+      max-width: 90%;
+      width: 720px;
+      height: 405px;
+      background-color: black;
+    }
+
+    @media screen and (max-width: 768px) {
+      video {
+        width: 90%;
+        height: auto;
+      }
+
+      input[type="file"] {
+        width: 90%;
+      }
+
+      button {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>Upload and Play Video</h2>
+  <div class="container">
+    <input type="file" id="videos" accept="video/*">
+    <button id="btn">Upload</button>
+    <video id="videoPlayer" controls style="display: none;">
+      <source id="videoSource" src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    const btn = document.getElementById("btn");
+
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      
+      const input = document.getElementById("videos");
+      const file = input.files[0];
+
+      if (!file) {
+        alert("Please select a video file.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("video", file);
+
+      try {
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+          const videoPlayer = document.getElementById("videoPlayer");
+          const videoSource = document.getElementById("videoSource");
+
+          videoSource.src = `/api/videos/${data.filename}`;
+          videoPlayer.style.display = "block";
+          videoPlayer.load();
+          videoPlayer.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert("Upload failed: " + data.error);
+        }
+      } catch (error) {
+        console.error("Upload error:", error);
+        alert("An error occurred during upload.");
+      }
+    });
+  </script>
+</body>
+</html>
